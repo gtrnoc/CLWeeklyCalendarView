@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong) UILabel *dateLabel;
 @property (nonatomic, strong) UIView *dateLabelContainer;
+@property (nonatomic, strong) UILabel *dotLabel;
 
 @end
 
@@ -27,6 +28,7 @@
     if (self) {
         // Initialization code
         [self addSubview:self.dateLabelContainer];
+        [self addSubview:self.dotLabel];
         
         UITapGestureRecognizer *singleFingerTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dailyViewDidClick:)];
         [self addGestureRecognizer:singleFingerTap];
@@ -61,6 +63,26 @@
     return _dateLabel;
 }
 
+-(UILabel *)dotLabel {
+    
+    if(!_dotLabel) {
+        _dotLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, DATE_LABEL_SIZE/2, self.bounds.size.width, 20)];
+        _dotLabel.backgroundColor = [UIColor clearColor];
+        _dotLabel.textColor = [UIColor whiteColor];
+        _dotLabel.textAlignment = NSTextAlignmentCenter;
+        _dotLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:30];
+        _dotLabel.text = @".";
+        _dotLabel.hidden = YES;
+    }
+    
+    return _dotLabel;
+}
+
+-(void)didMoveToSuperview {
+    self.dotLabel.textColor = self.dotTextColor;
+}
+
+
 -(void)setDate:(NSDate *)date {
     
     _date = date;
@@ -92,8 +114,14 @@
     }
     
     if (self.dateEnabled == NO) {
-        self.dateLabel.textColor = self.disabledDayTextColor;
-        self.dateLabel.backgroundColor = self.disabledDayBackgroundColor;
+        if (self.enabledDatesAppearance == CLEnabledDatesAppearanceBackground) {
+            self.dateLabel.textColor = self.disabledDayTextColor;
+            self.dateLabel.backgroundColor = self.disabledDayBackgroundColor;
+        }
+        self.dotLabel.hidden = YES;
+    }
+    else if (self.enabledDatesAppearance == CLEnabledDatesAppearanceDot) {
+        self.dotLabel.hidden = NO;
     }
 }
 

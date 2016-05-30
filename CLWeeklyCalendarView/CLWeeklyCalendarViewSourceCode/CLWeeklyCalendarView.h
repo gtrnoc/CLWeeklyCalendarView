@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DailyCalendarView.h"
+
 @protocol CLWeeklyCalendarViewDelegate <NSObject>
 
 // Keys for customize the calendar behavior
@@ -17,6 +19,7 @@ extern NSString *const CLCalendarFutureDayNumberTextColor;  //Day number text co
 extern NSString *const CLCalendarCurrentDayNumberTextColor; //Day number text color for today
 extern NSString *const CLCalendarSelectedDayNumberTextColor;    //Day number text color for the selected day
 extern NSString *const CLCalendarSelectedCurrentDayNumberTextColor; //Day number text color when today is selected
+extern NSString *const CLCalendarDotTextColor; //The color of the dot indicating an enabled date
 extern NSString *const CLCalendarCurrentDayNumberBackgroundColor;   //Day number background color for today when not selected
 extern NSString *const CLCalendarSelectedDayNumberBackgroundColor;  //Day number background color for selected day
 extern NSString *const CLCalendarSelectedCurrentDayNumberBackgroundColor;   //Day number background color when today is selected
@@ -32,6 +35,17 @@ extern NSString *const CLCalendarFont; //Preferred font of the calendar UI, defa
 
 @optional
 - (NSDictionary *)CLCalendarBehaviorAttributes;       //Optional Function, Set the calendar behavior attributes by using above keys
+/**
+ *  Informs the weekly view which dates in a week span are enabled. These will be requested as you swipe through the weeks.
+ *
+ *  @param initialDate the first day of the given week
+ *  @param finalDate   the last date of the given week
+ 
+ *  @discussion The dictionary does not need to be exaustive, i.e., the simple absence of a date means it is disabled
+ *
+ *  @return the resulting dictionary, with dates as keys and boolean NSNumbers as values.
+ */
+- (NSDictionary<NSDate*, NSNumber*>*)enabledDatesFromDate:(NSDate*)initialDate toDate:(NSDate*)finalDate;
 
 @end
 
@@ -41,7 +55,16 @@ extern NSString *const CLCalendarFont; //Preferred font of the calendar UI, defa
 @property (nonatomic, strong) NSDate *selectedDate;
 @property (nonatomic, strong) NSDictionary *calendarAttributes;
 
-@property (nonatomic, strong) NSArray *enabledDates; //Array of dates you want to enable (the rest of the dates will be disabled). Disabled dates will not be tappable.
+/**
+ *  Array of dates you want to enable. Their behavior will depend on enabledDatesAppearance and disabledDatesInteractionEnabled
+ */
+@property (nonatomic, strong) NSArray *enabledDates;
+/**
+ *  Wether enabled dates will have different backgrounds (default) or show dots below them
+ */
+@property (nonatomic) CLEnabledDatesAppearance enabledDatesAppearance;
+@property (nonatomic) BOOL disabledDatesInteractionEnabled;
+
 
 - (void)redrawToDate: (NSDate *)dt;
 - (void)updateWeatherIconByKey: (NSString *)key;
