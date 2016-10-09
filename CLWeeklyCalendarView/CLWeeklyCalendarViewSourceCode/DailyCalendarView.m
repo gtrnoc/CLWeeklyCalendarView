@@ -127,7 +127,7 @@
 
 -(UIColor *)colorByDate
 {
-    return [self.date isPastDate] ? self.pastDayNumberTextColor : self.futureDayNumberTextColor;
+    return [self.date isWeekendDate]?[UIColor lightGrayColor]:[UIColor whiteColor];
 }
 
 -(void)dailyViewDidClick: (UIGestureRecognizer *)tap

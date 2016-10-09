@@ -18,5 +18,6 @@
 - (BOOL)isDateToday;
 - (BOOL)isWithinDate:(NSDate *)earlierDate toDate:(NSDate *)laterDate;
 - (BOOL)isPastDate;
+- (BOOL)isWeekendDate;
 
 @end

@@ -89,4 +89,13 @@
         return NO;
     }
 }
+
+- (BOOL)isWeekendDate {
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSRange weekdayRange = [calendar maximumRangeOfUnit:NSCalendarUnitWeekday];
+    NSDateComponents *components = [calendar components:NSCalendarUnitWeekday fromDate:self];
+    NSUInteger weekdayOfDate = [components weekday];
+    return (weekdayOfDate == weekdayRange.location || weekdayOfDate == weekdayRange.length);
+}
+
 @end
