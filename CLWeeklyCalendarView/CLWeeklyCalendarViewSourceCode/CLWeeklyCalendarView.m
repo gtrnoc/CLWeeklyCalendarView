@@ -477,7 +477,7 @@ static NSInteger const CLCalendarBackgroundDefaultColor = 0xaaaaaa;
     [animation setDelegate:self];
     [animation setType:kCATransitionPush];
     [animation setSubtype:(blnSwipeRight)?kCATransitionFromLeft:kCATransitionFromRight];
-    [animation setDuration:0.50];
+    [animation setDuration:0.40];
     [animation setTimingFunction:
      [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
     [self.dailySubViewContainer.layer addAnimation:animation forKey:kCATransition];
