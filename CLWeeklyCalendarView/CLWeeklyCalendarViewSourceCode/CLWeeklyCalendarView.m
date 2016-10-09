@@ -410,10 +410,6 @@ static NSInteger const CLCalendarBackgroundDefaultColor = 0xaaaaaa;
     [dayFormatter setDateFormat:self.selectedDatePrintFormat];
     NSString *strDate = [dayFormatter stringFromDate:date];
     
-    if([date isDateToday]) {
-        strDate = [NSString stringWithFormat:@"Today, %@", strDate];
-    }
-    
     [self adjustDailyInfoLabelAndWeatherIcon:NO];
     
     self.dateInfoLabel.text = strDate;
