@@ -72,7 +72,11 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
 
 static NSInteger const CLCalendarBackgroundDefaultColor = 0xaaaaaa;
 
+#if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_9_3
+@interface CLWeeklyCalendarView()<DailyCalendarViewDelegate, UIGestureRecognizerDelegate, CAAnimationDelegate>
+#else
 @interface CLWeeklyCalendarView()<DailyCalendarViewDelegate, UIGestureRecognizerDelegate>
+#endif
 
 @property (nonatomic, strong) UIView *dailySubViewContainer;
 @property (nonatomic, strong) UIView *dayTitleSubViewContainer;
