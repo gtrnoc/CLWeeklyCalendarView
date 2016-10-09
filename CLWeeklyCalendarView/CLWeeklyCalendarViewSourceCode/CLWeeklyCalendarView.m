@@ -338,7 +338,7 @@ static NSInteger const CLCalendarBackgroundDefaultColor = 0xaaaaaa;
         [self dailyViewForDate:dt inFrame: CGRectMake(dailyWidth*i, 0, dailyWidth, DATE_VIEW_HEIGHT) ];
     }
     
-    [self dailyCalendarViewDidSelect:[NSDate new]];
+    [self markDateSelected:[NSDate new]];
 }
 
 - (void)refreshBackgroundImageColor
@@ -437,7 +437,7 @@ static NSInteger const CLCalendarBackgroundDefaultColor = 0xaaaaaa;
         [self delegateSwipeAnimation:swipeRight blnToday:[dt isDateToday] selectedDate:dt];
     }
     
-    [self dailyCalendarViewDidSelect:dt];
+    [self markDateSelected:dt];
 }
 
 -(void)redrawCalenderData
