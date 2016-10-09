@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "DailyCalendarView.h"
 
+@class CLWeeklyCalendarView;
+
 @protocol CLWeeklyCalendarViewDelegate <NSObject>
 
 // Keys for customize the calendar behavior
@@ -31,7 +33,7 @@ extern NSString *const CLCalendarDisabledDayTextColor;      //Day number text co
 extern NSString *const CLCalendarDisabledDayBackgroundColor;      //Day number background color for disabled dates
 extern NSString *const CLCalendarFont; //Preferred font of the calendar UI, default to system font. Font size passed here is ignored.
 
-- (void)dailyCalendarViewDidSelect: (NSDate *)date;
+- (void)calendarView:(CLWeeklyCalendarView *)calendarView dailyCalendarViewDidSelect:(NSDate *)date;
 
 @optional
 - (NSDictionary *)CLCalendarBehaviorAttributes;       //Optional Function, Set the calendar behavior attributes by using above keys

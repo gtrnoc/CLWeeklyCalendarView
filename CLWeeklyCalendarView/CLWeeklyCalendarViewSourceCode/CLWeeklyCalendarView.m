@@ -554,8 +554,8 @@ static NSInteger const CLCalendarBackgroundDefaultColor = 0xaaaaaa;
         return;
     }
     
-    if ([self.delegate respondsToSelector:@selector(dailyCalendarViewDidSelect:)]) {
-        [self.delegate dailyCalendarViewDidSelect:date];
+    if ([self.delegate respondsToSelector:@selector(calendarView:dailyCalendarViewDidSelect:)]) {
+        [self.delegate calendarView:self dailyCalendarViewDidSelect:date];
     }
 }
 
