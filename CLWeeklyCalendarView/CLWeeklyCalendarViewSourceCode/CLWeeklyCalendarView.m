@@ -492,7 +492,7 @@ static NSInteger const CLCalendarBackgroundDefaultColor = 0xaaaaaa;
         [data setObject:selectedDate forKey:@"selectedDate"];
     }
     
-    [self performSelector:@selector(renderSwipeDates:) withObject:data afterDelay:0.05f];
+    [self renderSwipeDates:data];
 }
 
 -(void)renderSwipeDates: (NSDictionary*)param
