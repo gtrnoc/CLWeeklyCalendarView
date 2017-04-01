@@ -53,12 +53,10 @@ static CGFloat CALENDER_VIEW_HEIGHT = 150.f;
 }
 
 
-
--(void)dailyCalendarViewDidSelect:(NSDate *)date
+- (void)calendarView:(CLWeeklyCalendarView *)calendarView dailyCalendarViewDidSelect:(NSDate *)date
 {
     //You can do any logic after the view select the date
 }
-
 
 
 @end
