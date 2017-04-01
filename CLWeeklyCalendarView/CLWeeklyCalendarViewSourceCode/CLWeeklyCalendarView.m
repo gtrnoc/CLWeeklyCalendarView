@@ -193,7 +193,7 @@ static NSInteger const CLCalendarBackgroundDefaultColor = 0xaaaaaa;
     
     self.selectedCurrentDayNumberTextColor = attributes[CLCalendarSelectedCurrentDayNumberTextColor] ?: [UIColor colorWithHex:CLCalendarSelectedCurrentDayNumberTextColorDefault];
     
-    self.dotTextColor = attributes[CLCalendarDotTextColor] ?: [UIColor colorWithHex:CLCalendarDotTextColor];
+    self.dotTextColor = attributes[CLCalendarDotTextColor] ?: [UIColor colorWithHex:CLCalendarDotTextColorDefault];
     
     self.currentDayNumberBackgroundColor = attributes[CLCalendarCurrentDayNumberBackgroundColor] ?: [UIColor colorWithHex:CLCalendarCurrentDayNumberBackgroundColorDefault];
     
