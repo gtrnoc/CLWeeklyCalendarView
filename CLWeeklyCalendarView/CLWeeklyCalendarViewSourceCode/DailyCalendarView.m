@@ -105,12 +105,16 @@
         
         self.dateLabelContainer.backgroundColor = blnSelected ? self.selectedCurrentDayNumberBackgroundColor : self.currentDayNumberBackgroundColor;
         self.dateLabel.textColor = blnSelected ? self.selectedCurrentDayNumberTextColor : self.currentDayNumberTextColor;
-
+        
     } else {
         
         self.dateLabelContainer.backgroundColor = blnSelected ? self.selectedDayNumberBackgroundColor : [UIColor clearColor];
+        
+        self.dateLabelContainer.layer.borderColor = (blnSelected) ? self.selectedDayNumberBorderColor.CGColor:[UIColor clearColor].CGColor;
+        self.dateLabelContainer.layer.borderWidth = (blnSelected) ? 1.0f : 0.0f;
+        
         self.dateLabel.textColor = blnSelected ? self.selectedDayNumberTextColor : [self colorByDate];
-
+        
     }
     
     if (self.dateEnabled == NO) {
@@ -127,7 +131,15 @@
 
 -(UIColor *)colorByDate
 {
-    return [self.date isWeekendDate]?[UIColor lightGrayColor]:[UIColor whiteColor];
+    if([self.date isDateToday]) {
+        return self.currentDayNumberTextColor;
+    } else {
+        if ([self.date isPastDate]) {
+            return self.pastDayNumberTextColor;
+        } else { // not today, but in future
+            return self.dateLabel.textColor = self.futureDayNumberTextColor;
+        }
+    }
 }
 
 -(void)dailyViewDidClick: (UIGestureRecognizer *)tap
