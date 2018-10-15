@@ -33,7 +33,7 @@ static CGFloat CALENDER_VIEW_HEIGHT = 150.f;
 -(CLWeeklyCalendarView *)calendarView
 {
     if(!_calendarView){
-        _calendarView = [[CLWeeklyCalendarView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, CALENDER_VIEW_HEIGHT)];
+        _calendarView = [[CLWeeklyCalendarView alloc] initWithFrame:CGRectMake(0, 20, self.view.bounds.size.width, CALENDER_VIEW_HEIGHT)];
         _calendarView.delegate = self;
     }
     return _calendarView;

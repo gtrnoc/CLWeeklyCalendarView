@@ -44,6 +44,7 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) UIColor *dotTextColor;
 @property (nonatomic, strong) UIColor *currentDayNumberBackgroundColor;
 @property (nonatomic, strong) UIColor *selectedDayNumberBackgroundColor;
+@property (nonatomic, strong) UIColor *selectedDayNumberBorderColor;
 @property (nonatomic, strong) UIColor *selectedCurrentDayNumberBackgroundColor;
 
 @property (nonatomic, strong) UIColor *disabledDayBackgroundColor;

@@ -6,10 +6,6 @@ CLWeeklyCalendarView is a scrollable weekly calendarView for iPhone. It is easy 
 
 ## Installation
 
-If you are using CocoaPods you can use this for the time being:
-
-`pod 'CLWeeklyCalendarView'`
-
 Manually:
 
 - Drag the `CLWeeklyCalendarViewSource` folder into your project.
@@ -42,7 +38,8 @@ After the date in the calendar has been selected , following delegate function w
 
 ```objective-c
 //After getting data callback
--(void)dailyCalendarViewDidSelect:(NSDate *)date
+
+- (void)calendarView:(CLWeeklyCalendarView *)calendarView dailyCalendarViewDidSelect:(NSDate *)date {
 {
     //You can do any logic after the view select the date
 }
@@ -61,20 +58,25 @@ You can delegate to tell the calenderView scrollTo specified date by using follo
 The following customisation key is allowed:
 
 ```
-CLCalendarWeekStartDay;    //The Day of weekStart from 1 - 7 - Default: 1
-CLCalendarDayTitleTextColor; //Day Title text color,  Mon, Tue, etc label text color
-CLCalendarPastDayNumberTextColor;    //Day number text color for dates in the past
-CLCalendarFutureDayNumberTextColor;  //Day number text color for dates in the future
-CLCalendarCurrentDayNumberTextColor; //Day number text color for today
-CLCalendarSelectedDayNumberTextColor;    //Day number text color for the selected day
-CLCalendarSelectedCurrentDayNumberTextColor; //Day number text color when today is selected
-CLCalendarCurrentDayNumberBackgroundColor;   //Day number background color for today when not selected
-CLCalendarSelectedDayNumberBackgroundColor;  //Day number background color for selected day
-CLCalendarSelectedCurrentDayNumberBackgroundColor;   //Day number background color when today is selected
-CLCalendarSelectedDatePrintFormat;   //Selected Date print format,  - Default: @"EEE, d MMM yyyy"
-CLCalendarSelectedDatePrintColor;    //Selected Date print text color -Default: [UIColor whiteColor]
-CLCalendarSelectedDatePrintFontSize; //Selected Date print font size - Default : 13.f
-CLCalendarBackgroundImageColor;      //BackgroundImage color - Default : see applyCustomDefaults.
+extern NSString *const CLCalendarWeekStartDay;    //The Day of weekStart from 1 - 7 - Default: 1
+extern NSString *const CLCalendarDayTitleTextColor; //Day Title text color,  Mon, Tue, etc label text color
+extern NSString *const CLCalendarPastDayNumberTextColor;    //Day number text color for dates in the past
+extern NSString *const CLCalendarFutureDayNumberTextColor;  //Day number text color for dates in the future
+extern NSString *const CLCalendarCurrentDayNumberTextColor; //Day number text color for today
+extern NSString *const CLCalendarSelectedDayNumberTextColor;    //Day number text color for the selected day
+extern NSString *const CLCalendarSelectedCurrentDayNumberTextColor; //Day number text color when today is selected
+extern NSString *const CLCalendarDotTextColor; //The color of the dot indicating an enabled date
+extern NSString *const CLCalendarCurrentDayNumberBackgroundColor;   //Day number background color for today when not selected
+extern NSString *const CLCalendarSelectedDayNumberBackgroundColor;  //Day number background color for selected day
+extern NSString *const CLCalendarSelectedDayNumberBorderColor;  //Day number label border color for selected day
+extern NSString *const CLCalendarSelectedCurrentDayNumberBackgroundColor;   //Day number background color when today is selected
+extern NSString *const CLCalendarSelectedDatePrintFormat;   //Selected Date print format,  - Default: @"EEE, d MMM yyyy"
+extern NSString *const CLCalendarSelectedDatePrintColor;    //Selected Date print text color -Default: [UIColor whiteColor]
+extern NSString *const CLCalendarSelectedDatePrintFontSize; //Selected Date print font size - Default : 13.f
+extern NSString *const CLCalendarBackgroundImageColor;      //BackgroundImage color - Default : see applyCustomDefaults.
+extern NSString *const CLCalendarDisabledDayTextColor;      //Day number text color for disabled dates
+extern NSString *const CLCalendarDisabledDayBackgroundColor;      //Day number background color for disabled dates
+extern NSString *const CLCalendarFont; //Preferred font of the calendar UI, default to system font. Font size passed here is ignored.
 ```
 
 You need to use this method to apply your customisation:

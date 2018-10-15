@@ -42,6 +42,7 @@ NSString *const CLCalendarSelectedCurrentDayNumberTextColor = @"CLCalendarSelect
 NSString *const CLCalendarDotTextColor = @"CLCalendarDotTextColor";
 NSString *const CLCalendarCurrentDayNumberBackgroundColor = @"CLCalendarCurrentDayNumberBackgroundColor";
 NSString *const CLCalendarSelectedDayNumberBackgroundColor = @"CLCalendarSelectedDayNumberBackgroundColor";
+NSString *const CLCalendarSelectedDayNumberBorderColor = @"CLCalendarSelectedDayNumberBorderColor";
 NSString *const CLCalendarSelectedCurrentDayNumberBackgroundColor = @"CLCalendarSelectedCurrentDayNumberBackgroundColor";
 NSString *const CLCalendarSelectedDatePrintFormat = @"CLCalendarSelectedDatePrintFormat";
 NSString *const CLCalendarSelectedDatePrintColor = @"CLCalendarSelectedDatePrintColor";
@@ -63,6 +64,7 @@ static NSInteger const CLCalendarSelectedDayNumberTextColorDefault = 0x34A1FF;
 static NSInteger const CLCalendarSelectedCurrentDayNumberTextColorDefault = 0x0081c1;
 static NSInteger const CLCalendarDotTextColorDefault = 0xffffff;
 static NSInteger const CLCalendarCurrentDayNumberBackgroundColorDefault = 0x0081c1;
+static NSInteger const CLCalendarSelectedDayNumberBorderColorDefault = 0xffffff;
 static NSInteger const CLCalendarSelectedDayNumberBackgroundColorDefault = 0xffffff;
 static NSInteger const CLCalendarSelectedCurrentDayNumberBackgroundColorDefault = 0xffffff;
 static NSInteger const CLCalendarDisabledDayTextColorDefault = 0xaaaaaa;
@@ -98,6 +100,7 @@ static NSInteger const CLCalendarBackgroundDefaultColor = 0xaaaaaa;
 @property (nonatomic, strong) UIColor *dotTextColor;
 @property (nonatomic, strong) UIColor *currentDayNumberBackgroundColor;
 @property (nonatomic, strong) UIColor *selectedDayNumberBackgroundColor;
+@property (nonatomic, strong) UIColor *selectedDayNumberBorderColor;
 @property (nonatomic, strong) UIColor *selectedCurrentDayNumberBackgroundColor;
 @property (nonatomic, strong) NSString *selectedDatePrintFormat;
 @property (nonatomic, strong) UIColor *selectedDatePrintColor;
@@ -186,7 +189,7 @@ static NSInteger const CLCalendarBackgroundDefaultColor = 0xaaaaaa;
     self.pastDayNumberTextColor = attributes[CLCalendarPastDayNumberTextColor] ?: [UIColor colorWithHex:CLCalendarPastDayNumberTextColorDefault];
     
     self.futureDayNumberTextColor = attributes[CLCalendarFutureDayNumberTextColor] ?: [UIColor colorWithHex:CLCalendarFutureDayNumberTextColorDefault];
-
+    
     self.currentDayNumberTextColor = attributes[CLCalendarCurrentDayNumberTextColor] ?: [UIColor colorWithHex:CLCalendarCurrentDayNumberTextColorDefault];
     
     self.selectedDayNumberTextColor = attributes[CLCalendarSelectedDayNumberTextColor] ?: [UIColor colorWithHex:CLCalendarSelectedDayNumberTextColorDefault];
@@ -194,6 +197,8 @@ static NSInteger const CLCalendarBackgroundDefaultColor = 0xaaaaaa;
     self.selectedCurrentDayNumberTextColor = attributes[CLCalendarSelectedCurrentDayNumberTextColor] ?: [UIColor colorWithHex:CLCalendarSelectedCurrentDayNumberTextColorDefault];
     
     self.dotTextColor = attributes[CLCalendarDotTextColor] ?: [UIColor colorWithHex:CLCalendarDotTextColorDefault];
+    
+    self.selectedDayNumberBorderColor = attributes[CLCalendarSelectedDayNumberBorderColor] ?: [UIColor colorWithHex:CLCalendarSelectedDayNumberBorderColorDefault];
     
     self.currentDayNumberBackgroundColor = attributes[CLCalendarCurrentDayNumberBackgroundColor] ?: [UIColor colorWithHex:CLCalendarCurrentDayNumberBackgroundColorDefault];
     
@@ -380,6 +385,7 @@ static NSInteger const CLCalendarBackgroundDefaultColor = 0xaaaaaa;
     view.selectedDayNumberTextColor = self.selectedDayNumberTextColor;
     view.currentDayNumberBackgroundColor = self.currentDayNumberBackgroundColor;
     view.selectedDayNumberBackgroundColor = self.selectedDayNumberBackgroundColor;
+    view.selectedDayNumberBorderColor = self.selectedDayNumberBorderColor;
     view.selectedCurrentDayNumberBackgroundColor = self.selectedCurrentDayNumberBackgroundColor;
     
     view.disabledDayBackgroundColor = self.disabledDateBackgroundColor;
@@ -404,7 +410,7 @@ static NSInteger const CLCalendarBackgroundDefaultColor = 0xaaaaaa;
     if (!self.disabledDatesInteractionEnabled && ![self isDateEnabled:date]) {
         return;
     }
- 
+    
     for (DailyCalendarView *v in [self.dailySubViewContainer subviews]) {
         [v markSelected:([v.date isSameDateWith:date])];
     }
@@ -550,7 +556,7 @@ static NSInteger const CLCalendarBackgroundDefaultColor = 0xaaaaaa;
     [self markDateSelected:date];
     
     //If not enabled, do not call the delegate method.
-    if (!self.disabledDatesInteractionEnabled && [self isDateEnabled:date] == NO) {
+    if ((!self.disabledDatesInteractionEnabled) && ([self isDateEnabled:date] == NO)) {
         return;
     }
     
